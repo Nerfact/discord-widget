@@ -18,5 +18,8 @@
 ## Usage
 Simply paste the snippet above into your site, and change the `serverId` parameter.
 
+## Screenshot
+![](http://i.imgur.com/pF8wIR9.png)
+
 ## Help
 If you run into trouble, let me know [here](https://github.com/RestingCoder/discord-widget/issues).
