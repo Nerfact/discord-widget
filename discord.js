@@ -3,7 +3,12 @@ var discordWidget = discordWidget || (function(){
 
   return {
     init : function(Params) {
-      _params = Params;
+      Params.serverId = typeof Params.serverId !== 'undefined' ? Params.serverId : false;
+      Params.title = typeof Params.title !== 'undefined' ? Params.title : false;
+      Params.join = typeof Params.join !== 'undefined' ? Params.join : true;
+      _params.serverId = Params.serverId;
+      _params.title = Params.title;
+      _params.join = Params.join;
     },
     render : function() {
       appendCssFile('http://discord.knightsoftheblade.com/style.min.css', 'css')
@@ -14,7 +19,7 @@ var discordWidget = discordWidget || (function(){
       xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
           var data = JSON.parse(xmlhttp.responseText);
-          renderWidget(data, _params.font);
+          renderWidget(data, _params);
         }
       }
       xmlhttp.open("GET", url, true);
@@ -22,9 +27,24 @@ var discordWidget = discordWidget || (function(){
     }
   };
 
-  function renderWidget(d, f) {
+  function renderWidget(d, p) {
+    var widgetElement = document.getElementsByClassName('discord-widget')[0];
+    var defaultInnerHtml = '<ul class="discord-tree"></ul><p class="discord-users-online"></p><p class="discord-join"></p><div class="discord-fade"></div>';
     var formatted = '';
     var gameName = '';
+    var treeElement, usersElement, joinElement;
+
+    if (p.title !== false) {
+      widgetElement.innerHTML = '<div class="discord-title"><h3>' + p.title + '</h3></div>' + defaultInnerHtml;
+      treeElement = document.getElementsByClassName('discord-tree')[0];
+    } else {
+      widgetElement.innerHTML = defaultInnerHtml;
+      treeElement = document.getElementsByClassName('discord-tree')[0];
+      treeElement.style.marginTop = '0';
+    }
+    
+    var usersElement = document.getElementsByClassName('discord-users-online')[0];
+    var joinElement = document.getElementsByClassName('discord-join')[0];
 
     for (var i = 0; i < d.channels.length; i++) {
       formatted += '<li class="discord-channel">' + d.channels[i].name + '</li><ul class="discord-userlist">';
@@ -51,10 +71,15 @@ var discordWidget = discordWidget || (function(){
     if (d.instant_invite != 'null')
     discordJoin = '<p class="discord-join"><a href="' + d.instant_invite + '">Join Server</a></p>';
 
-    document.getElementsByClassName('discord-tree')[0].innerHTML = formatted;
-    document.getElementsByClassName('discord-users-online')[0].innerHTML = 'Users Online: ' + d.members.length;
-    document.getElementsByClassName('discord-join')[0].innerHTML = discordJoin;
+    treeElement.innerHTML = formatted;
+    usersElement.innerHTML = 'Users Online: ' + d.members.length;
+    if (p.join) {
+      joinElement.innerHTML = discordJoin;
+    } else {
+      joinElement.style.display = 'none';
+    }
   }
+
   function appendCssFile(filename, filetype){
     if (filetype=="css"){
       var fileref=document.createElement("link")
