@@ -5,7 +5,8 @@
       discordWidget.init({
         serverId: '123456789',
         title: 'Discord Widget Title',
-        join: false
+        join: false,
+        alphabetical: false
       });
       discordWidget.render();
     </script>
