@@ -6,7 +6,8 @@
         serverId: '123456789',
         title: 'Discord Widget Title',
         join: false,
-        alphabetical: false
+        alphabetical: false,
+        theme: 'light'
       });
       discordWidget.render();
     </script>
