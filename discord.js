@@ -7,13 +7,20 @@ var discordWidget = discordWidget || (function(){
       Params.title = typeof Params.title !== 'undefined' ? Params.title : false;
       Params.join = typeof Params.join !== 'undefined' ? Params.join : true;
       Params.alphabetical = typeof Params.alphabetical !== 'undefined' ? Params.alphabetical : false;
+      Params.theme = typeof Params.theme !== 'undefined' ? Params.theme : 'light';
       _params.serverId = Params.serverId;
       _params.title = Params.title;
       _params.join = Params.join;
       _params.alphabetical = Params.alphabetical;
+      _params.theme = Params.theme;
     },
     render : function() {
-      appendCssFile('http://discord.knightsoftheblade.com/style.min.css', 'css')
+      if (_params.theme == 'dark') {
+        appendCssFile('http://discord.knightsoftheblade.com/dark.min.css', 'css');
+      } else {
+        appendCssFile('http://discord.knightsoftheblade.com/light.min.css', 'css');
+      }
+
       var url = 'http://discordapp.com/api/servers/' + _params.serverId + '/embed.json';
 
       var xmlhttp = new XMLHttpRequest();
