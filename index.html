@@ -6,6 +6,15 @@
   <link rel="stylesheet" href="./css/master.min.css" media="screen" title="default" charset="utf-8">
   <meta charset="utf-8">
   <title>Discord Widget</title>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-69334315-1', 'auto');
+    ga('send', 'pageview');
+  </script>
 </head>
 <body>
   <h1>Discord Widget</h1>
@@ -13,7 +22,7 @@
   <h2>
     Code Snippet
   </h2>
-  <pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://discord.knightsoftheblade.com/discord.min.js&quot;&gt;&lt;/script&gt;<br/>&lt;script type=&quot;text/javascript&quot;&gt;<br/>  discordWidget.init({<br/>    serverId: '123456789',<br/>    title: 'Discord Widget Title',<br/>    join: false<br/>  });<br/>  discordWidget.render();<br/>&lt;/script&gt;<br/><br/>&lt;div class=&quot;discord-widget&quot;&gt;&lt;/div&gt;</code></pre>
+  <pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://discord.knightsoftheblade.com/discord.min.js&quot;&gt;&lt;/script&gt;<br/>&lt;script type=&quot;text/javascript&quot;&gt;<br/>  discordWidget.init({<br/>    serverId: '123456789',<br/>    title: 'Discord Widget Title',<br/>    join: false,<br/>    alphabetical: false<br/>  });<br/>  discordWidget.render();<br/>&lt;/script&gt;<br/><br/>&lt;div class=&quot;discord-widget&quot;&gt;&lt;/div&gt;</code></pre>
 
   <h2>
     Parameters
@@ -23,6 +32,7 @@
     <tr><td>serverId<br/><strong>[String]</strong></td><td>Paste your Server ID from the Widget section of your Server Settings here.</td><td>false</td></tr>
     <tr><td>title<br/><strong>[String]</strong></td><td>A header will be added to the widget, containing the text supplied.</td><td>false</td></tr>
     <tr><td>join<br/><strong>[Boolean]</strong></td><td>Determines whether to show the Join Server button within the widget.</td><td>true</td></tr>
+    <tr><td>alphabetical<br/><strong>[Boolean]</strong></td><td>Determines whether the channel list will display in alphabetical order or not.</td><td>false</td></tr>
   </table>
   <h2>Preview</h2>
   <div class="discord-preview">
@@ -31,7 +41,8 @@
   discordWidget.init({
     serverId: '51143782082543616',
     title: 'Discord Widget Title',
-    join: false
+    join: false,
+    alphabetical: false
   });
   discordWidget.render();
 </script>
