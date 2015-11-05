@@ -8,11 +8,13 @@ var discordWidget = discordWidget || (function(){
       Params.join = typeof Params.join !== 'undefined' ? Params.join : true;
       Params.alphabetical = typeof Params.alphabetical !== 'undefined' ? Params.alphabetical : false;
       Params.theme = typeof Params.theme !== 'undefined' ? Params.theme : 'light';
+      Params.hideChannels = typeof Params.hideChannels !== 'undefined' ? Params.hideChannels : false;
       _params.serverId = Params.serverId;
       _params.title = Params.title;
       _params.join = Params.join;
       _params.alphabetical = Params.alphabetical;
       _params.theme = Params.theme;
+      _params.hideChannels = Params.hideChannels;
     },
     render : function() {
       if (_params.theme == 'dark') {
@@ -50,7 +52,7 @@ var discordWidget = discordWidget || (function(){
     var formatted = '';
     var gameName = '';
     var treeElement, usersElement, joinElement;
-    var channels, users;
+    var channels, users, hideChannel;
 
     if (p.title !== false) {
       widgetElement.innerHTML = '<div class="discord-title"><h3>' + p.title + '</h3></div>' + defaultInnerHtml;
@@ -65,13 +67,26 @@ var discordWidget = discordWidget || (function(){
     joinElement = document.getElementsByClassName('discord-join')[0];
 
     if (p.alphabetical) {
+      channels = [];
       for (var i = 0; i < d.channels.length; i++) {
-        formatted += '<li class="discord-channel">' + d.channels[i].name + '</li><ul class="discord-userlist">';
+        hideChannel = false;
+        for (var j = 0; j < p.hideChannels.length; j++) {
+          if (d.channels[i].name.includes(p.hideChannels[j])) {
+            hideChannel = true;
+          }
+        }
+        if (!hideChannel) {
+          channels.push(d.channels[i]);
+        }
+      }
+
+      for (var i = 0; i < channels.length; i++) {
+        formatted += '<li class="discord-channel">' + channels[i].name + '</li><ul class="discord-userlist">';
         for (var j = 0; j < d.members.length; j++) {
           gameName = '';
           if (d.members[j].game)
           gameName = ' - ' + d.members[j].game.name;
-          if (d.members[j].channel_id == d.channels[i].id) {
+          if (d.members[j].channel_id == channels[i].id) {
             if (d.members[j].status != 'online') {
               formatted += '<li class="discord-user"><img src="' + d.members[j].avatar_url +
               '" class="discord-avatar"/><div class="discord-user-status discord-idle"></div>' +
@@ -88,7 +103,15 @@ var discordWidget = discordWidget || (function(){
     } else {
       channels = [];
       for (var i = 0; i < d.channels.length; i++) {
-        channels.push(d.channels[i]);
+        hideChannel = false;
+        for (var j = 0; j < p.hideChannels.length; j++) {
+          if (d.channels[i].name.includes(p.hideChannels[j])) {
+            hideChannel = true;
+          }
+        }
+        if (!hideChannel) {
+          channels.push(d.channels[i]);
+        }
       }
       channels.sort(sortChannels);
 
