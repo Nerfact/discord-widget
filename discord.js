@@ -9,12 +9,14 @@ var discordWidget = discordWidget || (function(){
       Params.alphabetical = typeof Params.alphabetical !== 'undefined' ? Params.alphabetical : false;
       Params.theme = typeof Params.theme !== 'undefined' ? Params.theme : 'light';
       Params.hideChannels = typeof Params.hideChannels !== 'undefined' ? Params.hideChannels : false;
+      Params.showAllUsers = typeof Params.showAllUsers !== 'undefined' ? Params.showAllUsers : false;
       _params.serverId = Params.serverId;
       _params.title = Params.title;
       _params.join = Params.join;
       _params.alphabetical = Params.alphabetical;
       _params.theme = Params.theme;
       _params.hideChannels = Params.hideChannels;
+      _params.showAllUsers = Params.showAllUsers;
     },
     render : function() {
       if (_params.theme == 'dark') {
@@ -135,6 +137,42 @@ var discordWidget = discordWidget || (function(){
         }
         formatted += '</ul>';
       }
+    }
+
+    // TODO: Show All Users if TRUE
+    if (p.showAllUsers) {
+      var s = document.createElement("script");
+      s.type = "text/javascript";
+      s.src = "http://code.jquery.com/jquery-1.11.3.min.js";
+      document.head.appendChild(s);
+
+      s.onload = function () {
+        $(".discord-allusers-toggle").click(function(){
+          $(".discord-allusers").toggle(200, function(){
+            if ($(this).is(':visible')) {
+              $(".discord-allusers-toggle").html('&#9660; Online Users');
+            } else {
+              $(".discord-allusers-toggle").html('&#9654; Online Users');
+            }
+          });
+        });
+      }
+      formatted += '<li class="discord-channel discord-allusers-toggle">&#9660; Online Users</li><ul class="discord-userlist discord-allusers">';
+      for (var j = 0; j < d.members.length; j++) {
+        if (!d.members[j].channel_id) {
+        if (d.members[j].status != 'online') {
+          formatted += '<li class="discord-user"><img src="' + d.members[j].avatar_url +
+          '" class="discord-avatar"/><div class="discord-user-status discord-idle"></div>' +
+          d.members[j].username + '<span>' + gameName + '</span></li>';
+        } else {
+          formatted += '<li class="discord-user"><img src="' + d.members[j].avatar_url +
+          '" class="discord-avatar"/><div class="discord-user-status discord-online"></div>' +
+          d.members[j].username + '<span>' + gameName + '</span></li>';
+        }
+      }
+      }
+      formatted += '</ul>';
+      console.log('added');
     }
 
     var discordJoin = '';

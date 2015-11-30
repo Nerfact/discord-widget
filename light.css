@@ -84,6 +84,7 @@
   box-sizing: border-box;
 }
 .discord-fade{
+  pointer-events: none !important;
   position: absolute;
   top: 35px;
   bottom: 0;

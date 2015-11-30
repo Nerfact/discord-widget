@@ -7,7 +7,9 @@
         title: 'Discord Widget Title',
         join: false,
         alphabetical: false,
-        theme: 'light'
+        theme: 'dark',
+        hideChannels: ['AFK', 'ChannelName'],
+        showAllUsers: true
       });
       discordWidget.render();
     </script>
