@@ -172,7 +172,6 @@ var discordWidget = discordWidget || (function(){
       }
       }
       formatted += '</ul>';
-      console.log('added');
     }
 
     var discordJoin = '';
