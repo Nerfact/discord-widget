@@ -15,6 +15,7 @@
     ga('create', 'UA-69334315-1', 'auto');
     ga('send', 'pageview');
   </script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
   <h1>Discord Widget</h1>
@@ -33,27 +34,27 @@
     <tr><td>title<br/><strong>[String]</strong></td><td>A header will be added to the widget, containing the text supplied.</td><td>false</td></tr>
     <tr><td>join<br/><strong>[Boolean]</strong></td><td>Determines whether to show the Join Server button within the widget.</td><td>true</td></tr>
     <tr><td>alphabetical<br/><strong>[Boolean]</strong></td><td>Determines whether the channel list will display in alphabetical order or not.</td><td>false</td></tr>
-    <tr><td>theme<br/><strong>[String ('light', 'dark')]</strong></td><td>Pick your poison!</td><td>light</td></tr>
+    <tr><td>theme<br/><strong>[String ('light', 'dark', 'none')]</strong></td><td>Pick your poison!<br/><br/>'none' removes <strong>all styling</strong>, including margins and padding around the widget.</td><td>light</td></tr>
     <tr><td>hideChannels<br/><strong>[String Array]</strong></td><td>Hide channels. If the channel name contains the string provided, it will be hidden.</td><td>false</td></tr>
     <tr><td>showAllUsers<br/><strong>[Boolean]</strong></td><td>Show all online users, even if they are not in a voice channel.</td><td>false</td></tr>
   </table>
   <h2>Preview</h2>
   <div class="discord-preview">
-<script type="text/javascript" src="http://discord.knightsoftheblade.com/discord.min.js"></script>
-<script type="text/javascript">
-  discordWidget.init({
-    serverId: '51143782082543616',
-    title: 'Discord Widget Title',
-    join: false,
-    alphabetical: false,
-    theme: 'dark',
-    hideChannels: ['Channel Name 1', 'Channel Name 2'],
-    showAllUsers: true
-  });
-  discordWidget.render();
-</script>
+    <script type="text/javascript" src="discord.js"></script>
+    <script type="text/javascript">
+      discordWidget.init({
+        serverId: '51143782082543616',
+        title: 'Discord Widget Title',
+        join: false,
+        alphabetical: false,
+        theme: 'light',
+        hideChannels: ['Channel Name 1', 'Channel Name 2'],
+        showAllUsers: true
+      });
+      discordWidget.render();
+    </script>
 
-<div class="discord-widget"></div>
+    <div class="discord-widget"></div>
   </div>
   <h2>
     Help

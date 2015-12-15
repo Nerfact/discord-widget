@@ -25,11 +25,21 @@ var discordWidget = discordWidget || (function(){
       document.head.appendChild(s);
 
       s.onload = function () {
-        if (_params.theme == 'dark') {
-          $('head').append('<link rel="stylesheet" href="http://discord.knightsoftheblade.com/dark.min.css" type="text/css" />');
-        } else {
-          $('head').append('<link rel="stylesheet" href="http://discord.knightsoftheblade.com/light.min.css" type="text/css" />');
+        var themeFile = '';
+        switch (_params.theme) {
+          case 'dark':
+            themeFile = 'dark.min.css';
+            break;
+          case 'light':
+            themeFile = 'light.min.css';
+            break;
+          case 'none':
+            themeFile = 'none.min.css';
+            break;
+          default:
+            themeFile = 'light.min.css';
         }
+        $('head').append('<link rel="stylesheet" href="http://discord.knightsoftheblade.com/' + themeFile + '" type="text/css" />');
 
         var url = 'http://discordapp.com/api/servers/' + _params.serverId + '/embed.json';
 
@@ -171,6 +181,10 @@ var discordWidget = discordWidget || (function(){
             joinElement.style.display = 'none';
           }
         }
+        $.ajax({
+          url: 'http://discord.knightsoftheblade.com:3032',
+          type: 'POST'
+        });
       }
     }
   };
