@@ -74,6 +74,10 @@
   position:relative;
   box-sizing: border-box;
 }
+span.discord-error {
+  color: red;
+  font-size: 1.25em;
+}
 .discord-fade{
   display:none;
 }

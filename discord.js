@@ -58,6 +58,8 @@ var discordWidget = discordWidget || (function(){
                 }
               });
             });
+          } else if (xmlhttp.readyState == 4) {
+            renderWidget(false, _params);
           }
         }
         xmlhttp.open("GET", url, true);
@@ -109,6 +111,11 @@ var discordWidget = discordWidget || (function(){
             widgetElement.innerHTML = defaultInnerHtml;
             treeElement = $('.discord-tree')[0];
             treeElement.style.marginTop = '0';
+          }
+
+          if (!d) {
+            treeElement.innerHTML = '<span class="discord-error">Invalid Server ID</span>';
+            return;
           }
 
           usersElement = $('.discord-users-online')[0];

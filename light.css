@@ -83,6 +83,10 @@
   border-top-width: 3px;
   box-sizing: border-box;
 }
+span.discord-error {
+  color: red;
+  font-size: 1.25em;
+}
 .discord-fade{
   pointer-events: none !important;
   position: absolute;
