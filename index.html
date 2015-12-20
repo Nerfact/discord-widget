@@ -23,7 +23,7 @@
   <h2>
     Code Snippet
   </h2>
-  <pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://discord.knightsoftheblade.com/discord.min.js&quot;&gt;&lt;/script&gt;<br/>&lt;script type=&quot;text/javascript&quot;&gt;<br/>  discordWidget.init({<br/>    serverId: '51143782082543616',<br/>    title: 'Discord Widget Title',<br/>    join: false,<br/>    alphabetical: false,<br/>    theme: 'dark',<br/>    hideChannels: ['Channel Name 1', 'Channel Name 2'],<br/>    showAllUsers: true<br/>  });<br/>  discordWidget.render();<br/>&lt;/script&gt;<br/><br/>&lt;div class=&quot;discord-widget&quot;&gt;&lt;/div&gt;</code></pre>
+  <pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://discord.knightsoftheblade.com/discord.min.js&quot;&gt;&lt;/script&gt;<br/>&lt;script type=&quot;text/javascript&quot;&gt;<br/>  discordWidget.init({<br/>    serverId: '51143782082543616',<br/>    title: 'Discord Widget Title',<br/>    join: false,<br/>    alphabetical: false,<br/>    theme: 'dark',<br/>    hideChannels: ['Channel Name 1', 'Channel Name 2'],<br/>    showAllUsers: true,<br/>    allUsersDefaultState: true<br/>  });<br/>  discordWidget.render();<br/>&lt;/script&gt;<br/><br/>&lt;div class=&quot;discord-widget&quot;&gt;&lt;/div&gt;</code></pre>
 
   <h2>
     Parameters
@@ -37,24 +37,26 @@
     <tr><td>theme<br/><strong>[String ('light', 'dark', 'none')]</strong></td><td>Pick your poison!<br/><br/>'none' removes <strong>all styling</strong>, including margins and padding around the widget.</td><td>light</td></tr>
     <tr><td>hideChannels<br/><strong>[String Array]</strong></td><td>Hide channels. If the channel name contains the string provided, it will be hidden.</td><td>false</td></tr>
     <tr><td>showAllUsers<br/><strong>[Boolean]</strong></td><td>Show all online users, even if they are not in a voice channel.</td><td>false</td></tr>
+    <tr><td>allUsersDefaultState<br/><strong>[Boolean]</strong></td><td>Sets whether the Online Users section is expanded or not by default.</td><td>true</td></tr>
   </table>
   <h2>Preview</h2>
   <div class="discord-preview">
-    <script type="text/javascript" src="http://discord.knightsoftheblade.com/discord.min.js"></script>
-    <script type="text/javascript">
-      discordWidget.init({
-        serverId: '51143782082543616',
-        title: 'Discord Widget Title',
-        join: false,
-        alphabetical: false,
-        theme: 'dark',
-        hideChannels: ['Channel Name 1', 'Channel Name 2'],
-        showAllUsers: true
-      });
-      discordWidget.render();
-    </script>
+<script type="text/javascript" src="http://discord.knightsoftheblade.com/discord.min.js"></script>
+<script type="text/javascript">
+  discordWidget.init({
+    serverId: '51143782082543616',
+    title: 'Discord Widget Title',
+    join: false,
+    alphabetical: false,
+    theme: 'dark',
+    hideChannels: ['Channel Name 1', 'Channel Name 2'],
+    showAllUsers: true,
+    allUsersDefaultState: true
+  });
+  discordWidget.render();
+</script>
 
-    <div class="discord-widget"></div>
+<div class="discord-widget"></div>
   </div>
   <h2>
     Help

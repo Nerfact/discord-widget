@@ -10,6 +10,7 @@ var discordWidget = discordWidget || (function(){
       Params.theme = typeof Params.theme !== 'undefined' ? Params.theme : 'light';
       Params.hideChannels = typeof Params.hideChannels !== 'undefined' ? Params.hideChannels : false;
       Params.showAllUsers = typeof Params.showAllUsers !== 'undefined' ? Params.showAllUsers : false;
+      Params.allUsersDefaultState = typeof Params.allUsersDefaultState !== 'undefined' ? Params.allUsersDefaultState : true;
       _params.serverId = Params.serverId;
       _params.title = Params.title;
       _params.join = Params.join;
@@ -17,6 +18,7 @@ var discordWidget = discordWidget || (function(){
       _params.theme = Params.theme;
       _params.hideChannels = Params.hideChannels;
       _params.showAllUsers = Params.showAllUsers;
+      _params.allUsersDefaultState = Params.allUsersDefaultState;
     },
     render : function() {
       var s = document.createElement("script");
@@ -49,6 +51,10 @@ var discordWidget = discordWidget || (function(){
           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var data = JSON.parse(xmlhttp.responseText);
             renderWidget(data, _params);
+            if (!_params.allUsersDefaultState) {
+              $(".discord-allusers").toggle();
+              $(".discord-allusers-toggle").html('&#9656; Online Users');
+            }
             $(".discord-allusers-toggle").click(function(){
               $(".discord-allusers").toggle(100, function(){
                 if ($(this).is(':visible')) {
