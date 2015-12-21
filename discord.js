@@ -11,6 +11,7 @@ var discordWidget = discordWidget || (function(){
       Params.hideChannels = typeof Params.hideChannels !== 'undefined' ? Params.hideChannels : false;
       Params.showAllUsers = typeof Params.showAllUsers !== 'undefined' ? Params.showAllUsers : false;
       Params.allUsersDefaultState = typeof Params.allUsersDefaultState !== 'undefined' ? Params.allUsersDefaultState : true;
+      Params.loadjQuery = typeof Params.loadjQuery !== 'undefined' ? Params.loadjQuery : true;
       _params.serverId = Params.serverId;
       _params.title = Params.title;
       _params.join = Params.join;
@@ -19,27 +20,35 @@ var discordWidget = discordWidget || (function(){
       _params.hideChannels = Params.hideChannels;
       _params.showAllUsers = Params.showAllUsers;
       _params.allUsersDefaultState = Params.allUsersDefaultState;
+      _params.loadjQuery = Params.loadjQuery;
     },
     render : function() {
-      var s = document.createElement("script");
-      s.type = "text/javascript";
-      s.src = "http://code.jquery.com/jquery-1.11.3.min.js";
-      document.head.appendChild(s);
+      if (window.jQuery) {
+        renderAll();
+      } else if (_params.loadjQuery) {
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js";
+        document.head.appendChild(s);
 
-      s.onload = function () {
+        s.onload = function () {
+          renderAll();
+        }
+      }
+      function renderAll() {
         var themeFile = '';
         switch (_params.theme) {
           case 'dark':
-            themeFile = 'dark.min.css';
-            break;
+          themeFile = 'dark.min.css';
+          break;
           case 'light':
-            themeFile = 'light.min.css';
-            break;
+          themeFile = 'light.min.css';
+          break;
           case 'none':
-            themeFile = 'none.min.css';
-            break;
+          themeFile = 'none.min.css';
+          break;
           default:
-            themeFile = 'light.min.css';
+          themeFile = 'light.min.css';
         }
         $('head').append('<link rel="stylesheet" href="http://discord.knightsoftheblade.com/' + themeFile + '" type="text/css" />');
 
@@ -52,15 +61,15 @@ var discordWidget = discordWidget || (function(){
             var data = JSON.parse(xmlhttp.responseText);
             renderWidget(data, _params);
             if (!_params.allUsersDefaultState) {
-              $(".discord-allusers").toggle();
-              $(".discord-allusers-toggle").html('&#9656; Online Users');
+              $('.discord-allusers').toggle();
+              $('.discord-allusers-toggle').html('&#9656; Online Users');
             }
-            $(".discord-allusers-toggle").click(function(){
-              $(".discord-allusers").toggle(100, function(){
-                if ($(this).is(':visible')) {
-                  $(".discord-allusers-toggle").html('&#9662; Online Users');
+            $('.discord-allusers-toggle').click(function(){
+              $('.discord-allusers').toggle(100, function(){
+                if ($('.discord-allusers').is(':visible')) {
+                  $('.discord-allusers-toggle').html('&#9662; Online Users');
                 } else {
-                  $(".discord-allusers-toggle").html('&#9656; Online Users');
+                  $('.discord-allusers-toggle').html('&#9656; Online Users');
                 }
               });
             });
@@ -68,7 +77,7 @@ var discordWidget = discordWidget || (function(){
             renderWidget(false, _params);
           }
         }
-        xmlhttp.open("GET", url, true);
+        xmlhttp.open('GET', url, true);
         xmlhttp.send();
 
         function sortChannels(a, b) {
