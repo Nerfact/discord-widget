@@ -11,7 +11,6 @@ var discordWidget = discordWidget || (function(){
       Params.hideChannels = typeof Params.hideChannels !== 'undefined' ? Params.hideChannels : false;
       Params.showAllUsers = typeof Params.showAllUsers !== 'undefined' ? Params.showAllUsers : false;
       Params.allUsersDefaultState = typeof Params.allUsersDefaultState !== 'undefined' ? Params.allUsersDefaultState : true;
-      Params.loadjQuery = typeof Params.loadjQuery !== 'undefined' ? Params.loadjQuery : true;
       _params.serverId = Params.serverId;
       _params.title = Params.title;
       _params.join = Params.join;
@@ -20,7 +19,6 @@ var discordWidget = discordWidget || (function(){
       _params.hideChannels = Params.hideChannels;
       _params.showAllUsers = Params.showAllUsers;
       _params.allUsersDefaultState = Params.allUsersDefaultState;
-      _params.loadjQuery = Params.loadjQuery;
     },
     render : function() {
       if (window.jQuery) {
