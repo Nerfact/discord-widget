@@ -1,5 +1,6 @@
 var discordWidget = discordWidget || (function(){
   var _params = {};
+  var version = '1.0';
 
   return {
     init : function(Params) {
@@ -111,6 +112,7 @@ var discordWidget = discordWidget || (function(){
 
         function renderWidget(d, p) {
           var widgetElement = $('.discord-widget')[0];
+          $(widgetElement).attr("version", version);
           var defaultInnerHtml = '<ul class="discord-tree"></ul><p class="discord-users-online"></p><p class="discord-join"></p><div class="discord-fade"></div>';
           var formatted = '';
           var gameName = '';
