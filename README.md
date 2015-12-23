@@ -23,5 +23,14 @@ For more details, go [here](http://discord.knightsoftheblade.com/).
 ## Screenshot
 ![](http://i.imgur.com/6zRoK2V.png)
 
+## Changelog
+#### 1.0
+##### New Features
+* Added version info to the widget to make troubleshooting issues on user sites easier.
+* Started this changelog.
+ 
+##### Bug Fixes
+* N/A
+
 ## Help
 If you run into trouble, let me know [here](https://github.com/RestingCoder/discord-widget/issues).
