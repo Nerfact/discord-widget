@@ -21,7 +21,7 @@ Paste the snippet above into your site, and change the `serverId` parameter.
 For more details, go [here](http://discord.knightsoftheblade.com/).
 
 ## Screenshot
-![](http://i.imgur.com/pF8wIR9.png)
+![](http://i.imgur.com/6zRoK2V.png)
 
 ## Help
 If you run into trouble, let me know [here](https://github.com/RestingCoder/discord-widget/issues).
