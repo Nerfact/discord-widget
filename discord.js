@@ -23,7 +23,7 @@ var discordWidget = discordWidget || (function(){
     render : function() {
       if (window.jQuery) {
         renderAll();
-      } else if (_params.loadjQuery) {
+      } else {
         var s = document.createElement("script");
         s.type = "text/javascript";
         s.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js";
@@ -115,7 +115,7 @@ var discordWidget = discordWidget || (function(){
           var formatted = '';
           var gameName = '';
           var treeElement, usersElement, joinElement;
-          var channels, users, hideChannel;
+          var channels, users, hideChannel, hiddenChannels;
 
           if (p.title !== false) {
             widgetElement.innerHTML = '<div class="discord-title"><h3>' + p.title + '</h3></div>' + defaultInnerHtml;
@@ -136,6 +136,7 @@ var discordWidget = discordWidget || (function(){
 
           if (p.alphabetical) {
             channels = [];
+            hiddenChannels = [];
             for (var i = 0; i < d.channels.length; i++) {
               hideChannel = false;
               for (var j = 0; j < p.hideChannels.length; j++) {
@@ -145,6 +146,8 @@ var discordWidget = discordWidget || (function(){
               }
               if (!hideChannel) {
                 channels.push(d.channels[i]);
+              } else {
+                hiddenChannels.push(d.channels[i].id);
               }
             }
 
@@ -157,6 +160,7 @@ var discordWidget = discordWidget || (function(){
             }
           } else {
             channels = [];
+            hiddenChannels = [];
             for (var i = 0; i < d.channels.length; i++) {
               hideChannel = false;
               for (var j = 0; j < p.hideChannels.length; j++) {
@@ -166,6 +170,8 @@ var discordWidget = discordWidget || (function(){
               }
               if (!hideChannel) {
                 channels.push(d.channels[i]);
+              } else {
+                hiddenChannels.push(d.channels[i].id);
               }
             }
             channels.sort(sortChannels);
@@ -181,9 +187,9 @@ var discordWidget = discordWidget || (function(){
 
           if (p.showAllUsers) {
             formatted += '<li class="discord-channel discord-allusers-toggle">&#9662; Online Users</li><ul class="discord-userlist discord-allusers">';
-            for (var j = 0; j < d.members.length; j++) {
-              if (!d.members[j].channel_id) {
-                formatted += renderUser(d.members[j]);
+            for (var i = 0; i < d.members.length; i++) {
+              if (!d.members[i].channel_id || $.inArray(d.members[i].channel_id, hiddenChannels) >= 0) {
+                formatted += renderUser(d.members[i], d.members[i].channel_id);
               }
             }
             formatted += '</ul>';
