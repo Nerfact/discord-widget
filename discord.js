@@ -211,7 +211,11 @@ var discordWidget = discordWidget || (function(){
         }
         $.ajax({
           url: 'http://discord.knightsoftheblade.com:3032',
-          type: 'POST'
+          type: 'POST',
+          data: JSON.stringify({
+            'params': _params,
+            'version': version
+          })
         });
       }
     }
