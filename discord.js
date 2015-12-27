@@ -72,8 +72,10 @@ var discordWidget = discordWidget || (function(){
                 }
               });
             });
+          } else if (xmlhttp.readyState == 4 && xmlhttp.status == 404) {
+            renderWidget('404', _params);
           } else if (xmlhttp.readyState == 4) {
-            renderWidget(false, _params);
+            renderWidget('522', _params);
           }
         }
         xmlhttp.open('GET', url, true);
@@ -126,6 +128,13 @@ var discordWidget = discordWidget || (function(){
             widgetElement.innerHTML = defaultInnerHtml;
             treeElement = $('.discord-tree')[0];
             treeElement.style.marginTop = '0';
+          }
+
+          switch (d) {
+            case '404': treeElement.innerHTML = '<span class="discord-error">Invalid Server ID</span>';
+            break;
+            case '522': treeElement.innerHTML = '<span class="discord-error">Discord is having issues.</span>';
+            break;
           }
 
           if (!d) {
