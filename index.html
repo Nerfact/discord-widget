@@ -4,6 +4,9 @@
   <link rel="stylesheet" href="./css/solarized_dark.css">
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,500' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="./css/master.min.css" media="screen" title="default" charset="utf-8">
+  <link rel="stylesheet" href="./css/jquery-ui.min.css" media="screen" title="default" charset="utf-8">
+  <link rel="stylesheet" href="./css/jquery-ui.structure.min.css" media="screen" title="default" charset="utf-8">
+  <link rel="stylesheet" href="./css/jquery-ui.theme.min.css" media="screen" title="default" charset="utf-8">
   <meta charset="utf-8">
   <title>Discord Widget</title>
   <script>
@@ -15,6 +18,14 @@
   ga('create', 'UA-69334315-1', 'auto');
   ga('send', 'pageview');
   </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script>
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+  </script>
 </head>
 <body>
   <h1>Discord Widget</h1>
@@ -22,7 +33,94 @@
   <h2>
     Code Snippet
   </h2>
-  <pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://discord.deliriousdrunkards.com/discord.min.js&quot;&gt;&lt;/script&gt;<br/>&lt;script type=&quot;text/javascript&quot;&gt;<br/>  discordWidget.init({<br/>    serverId: '51143782082543616',<br/>    title: 'Discord Widget Title',<br/>    join: false,<br/>    alphabetical: false,<br/>    theme: 'dark',<br/>    hideChannels: ['Channel Name 1', 'Channel Name 2'],<br/>    showAllUsers: true,<br/>    allUsersDefaultState: true<br/>  });<br/>  discordWidget.render();<br/>&lt;/script&gt;<br/><br/>&lt;div class=&quot;discord-widget&quot;&gt;&lt;/div&gt;</code></pre>
+  <div id="tabs">
+  <ul>
+    <li><a href="#tab1">HTML / JS</a></li>
+    <li><a href="#tab2">iframe</a></li>
+  </ul>
+  <div id="tab1">
+    <pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://discord.deliriousdrunkards.com/discord.min.js&quot;&gt;&lt;/script&gt;<br/>&lt;script type=&quot;text/javascript&quot;&gt;<br/>  discordWidget.init({<br/>    serverId: '51143782082543616',<br/>    title: 'Discord Widget Title',<br/>    join: false,<br/>    alphabetical: false,<br/>    theme: 'dark',<br/>    hideChannels: ['Channel Name 1', 'Channel Name 2'],<br/>    showAllUsers: true,<br/>    allUsersDefaultState: true<br/>  });<br/>  discordWidget.render();<br/>&lt;/script&gt;<br/><br/>&lt;div class=&quot;discord-widget&quot;&gt;&lt;/div&gt;</code></pre>
+  </div>
+  <div id="tab2">
+    <pre><code class="html" id="discord-iframe-code">&lt;iframe src=&quot;http://discordi.deliriousdrunkards.com/render?id=51143782082543616&quot;&gt;&lt;/iframe&gt;</code></pre>
+    <form id="iframe-form">
+          <div id="iframe-id" class="iframe-form-input">
+               <label for="iframe-id-text">
+                    Server ID
+               </label><br/>
+               <input type="text" name="iframe-id-text" id="iframe-id-text" autocomplete="off">
+          </div>
+          <div id="iframe-title" class="iframe-form-input">
+               <label for="iframe-title-text">
+                    Widget Title <span class="iframe-form-info">(Leave blank to hide the title bar)</span>
+               </label><br/>
+               <input type="text" name="iframe-title" id="iframe-title-text" autocomplete="off">
+          </div>
+          <div id="iframe-theme" class="iframe-form-input">
+               <label for="iframe-theme-light">
+                    Theme
+               </label>
+               <div>
+                    <input type="radio" name="iframe-theme" id="iframe-theme-light" value="Light">
+                    <span>
+                         Light
+                    </span>
+               </div>
+               <div>
+                    <input type="radio" name="iframe-theme" id="iframe-theme-dark" value="Dark">
+                    <span>
+                         Dark
+                    </span>
+               </div>
+               <div>
+                    <input type="radio" name="iframe-theme" id="iframe-theme-none" value="None">
+                    <span>
+                         None
+                    </span>
+               </div>
+          </div>
+          <div id="iframe-options" class="iframe-form-input">
+               <label for="iframe-options">
+                    Options
+               </label>
+               <div>
+                    <input type="checkbox" name="iframe-options-join" id="iframe-options-join" value="Show Join Button">
+                    <span>
+                         Show Join Button
+                    </span>
+                    <br>
+               </div>
+               <div>
+                    <input type="checkbox" name="iframe-options-abc" id="iframe-options-abc" value="Alphabetize Channel List">
+                    <span>
+                         Alphabetize Channel List
+                    </span>
+                    <br>
+               </div>
+               <div>
+                    <input type="checkbox" name="iframe-options-showall" id="iframe-options-showall" value="Show All Online Users">
+                    <span>
+                         Show All Online Users
+                    </span>
+                    <br>
+               </div>
+               <div>
+                    <input type="checkbox" name="iframe-options-showalltoggle" id="iframe-options-showalltoggle" value="All Online Users Starts Expanded">
+                    <span>
+                         All Online Users Starts Expanded
+                    </span>
+                    <br>
+               </div>
+          </div>
+          <div id="iframe-hidechannels">
+               <label for="iframe-hidechannels-text">
+                    Hide Channels <span class="iframe-form-info">(Separated by commas)</span>
+               </label><br/>
+               <input type="text" name="iframe-hidechannels-text" id="iframe-hidechannels-text" autocomplete="off">
+          </div>
+     </form>
+  </div>
+</div>
 
   <h2>
     Parameters
@@ -56,6 +154,9 @@ discordWidget.render();
 </script>
 
 <div class="discord-widget"></div>
+
+<iframe src="http://discordi.deliriousdrunkards.com/render?id=51143782082543616" width="300px"></iframe>
+
   </div>
   <h2>
     Help

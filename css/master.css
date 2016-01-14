@@ -11,13 +11,34 @@ a{
 a:hover{
   color:lightgrey;
 }
+#tabs{
+  width: 80%;
+  margin: auto;
+  font-size: 1em;
+}
+li a{
+  outline: none;
+}
 pre{
   margin:auto;
-  width:80%;
   text-align:left;
   -webkit-box-shadow: 0 1px 10px rgba(0,0,0,0.4);
   -moz-box-shadow: 0 1px 10px rgba(0,0,0,0.4);
   box-shadow: 0 1px 10px rgba(0,0,0,0.4);
+}
+#iframe-form{
+  margin-top:10px;
+  text-align: left;
+}
+#iframe-form label {
+  font-weight: bold;
+}
+.iframe-form-input {
+  margin-bottom: 10px;
+}
+.iframe-form-info{
+  font-size:0.75em;
+  color: yellow;
 }
 .discord-preview{
   margin:auto;
