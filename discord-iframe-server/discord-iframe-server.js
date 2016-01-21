@@ -13,15 +13,21 @@ app.get('/', function(req, res){
 });
 
 app.get('/render', function(req, res){
+  var treeTop = '5px';
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.write('<title>Discord iframe Widget</title>');
   res.write('<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">');
+  res.write('<style>body{font-family:Raleway;margin:0;}</style>');
   res.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>');
   res.write('<script type="text/javascript" src="http://discord.deliriousdrunkards.com/discord.min.js"></script>');
   res.write('<script type="text/javascript">');
   res.write('discordWidget.init({');
   res.write('serverId: \'' + req.query.id + '\',');
     //serverId: '51143782082543616',
+  if (req.query.title){
+    res.write('title: \'' + req.query.title + '\',');
+    treeTop = '34px';
+  }
     //title: 'Discord Widget Title',
     //join: false,
     //alphabetical: false,
@@ -32,7 +38,8 @@ app.get('/render', function(req, res){
   res.write('});');
   res.write('discordWidget.render();');
   res.write('</script>');
-  res.write('<div class="discord-widget"></div>');
+  res.write('<div class="discord-widget" style="height:100%;margin:0"></div>');
+  res.write('<style>.discord-fade{display:none;}.discord-join{position: absolute;bottom: 15px;width: auto;left:15px;right:15px;}.discord-tree{position: absolute;left: 15px;right:0;top:'+treeTop+';bottom: 70px;overflow-y: auto;overflow-x: hidden;}.discord-users-online{position: absolute;bottom: 50px;right: 15px;}</style>');
   res.end();
 });
 

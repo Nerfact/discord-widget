@@ -51,7 +51,7 @@ var discordWidget = discordWidget || (function(){
         }
         $('head').append('<link rel="stylesheet" href="http://discord.knightsoftheblade.com/' + themeFile + '" type="text/css" />');
 
-        var url = 'http://discordapp.com/api/servers/' + _params.serverId + '/embed.json';
+        var url = 'https://discordapp.com/api/servers/' + _params.serverId + '/embed.json';
 
         var xmlhttp = new XMLHttpRequest();
 
@@ -75,7 +75,7 @@ var discordWidget = discordWidget || (function(){
           } else if (xmlhttp.readyState == 4 && xmlhttp.status == 404) {
             renderWidget('404', _params);
           } else if (xmlhttp.readyState == 4) {
-            renderWidget('522', _params);
+            renderWidget(xmlhttp.status, _params);
           }
         }
         xmlhttp.open('GET', url, true);
@@ -138,7 +138,7 @@ var discordWidget = discordWidget || (function(){
           }
 
           if (!d) {
-            treeElement.innerHTML = '<span class="discord-error">Invalid Server ID</span>';
+            treeElement.innerHTML = d;
             return;
           }
 
@@ -208,7 +208,7 @@ var discordWidget = discordWidget || (function(){
 
           var discordJoin = '';
           if (d.instant_invite != 'null')
-          discordJoin = '<p class="discord-join"><a href="' + d.instant_invite + '">Join Server</a></p>';
+          discordJoin = '<a href="' + d.instant_invite + '">Join Server</a>';
 
           treeElement.innerHTML = formatted;
           usersElement.innerHTML = 'Users Online: ' + d.members.length;
@@ -218,14 +218,6 @@ var discordWidget = discordWidget || (function(){
             joinElement.style.display = 'none';
           }
         }
-        $.ajax({
-          url: 'http://discord.knightsoftheblade.com:3032',
-          type: 'POST',
-          data: JSON.stringify({
-            'params': _params,
-            'version': version
-          })
-        });
       }
     }
   };
