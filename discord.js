@@ -49,7 +49,7 @@ var discordWidget = discordWidget || (function(){
           default:
           themeFile = 'light.min.css';
         }
-        $('head').append('<link rel="stylesheet" href="http://discord.knightsoftheblade.com/' + themeFile + '" type="text/css" />');
+        $('head').append('<link rel="stylesheet" href="http://discord.deliriousdrunkards.com/' + themeFile + '" type="text/css" />');
 
         var url = 'https://discordapp.com/api/servers/' + _params.serverId + '/embed.json';
 
