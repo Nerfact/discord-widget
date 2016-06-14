@@ -208,7 +208,7 @@ var discordWidget = discordWidget || (function(){
 
           var discordJoin = '';
           if (d.instant_invite != 'null')
-          discordJoin = '<a href="' + d.instant_invite + '">Join Server</a>';
+          discordJoin = '<a href="' + d.instant_invite + '" target="_blank">Join Server</a>';
 
           treeElement.innerHTML = formatted;
           usersElement.innerHTML = 'Users Online: ' + d.members.length;
