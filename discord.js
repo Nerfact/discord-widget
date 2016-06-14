@@ -151,7 +151,7 @@ var discordWidget = discordWidget || (function(){
             for (var i = 0; i < d.channels.length; i++) {
               hideChannel = false;
               for (var j = 0; j < p.hideChannels.length; j++) {
-                if (d.channels[i].name.includes(p.hideChannels[j])) {
+                  if (d.channels[i].name.indexOf(p.hideChannels[j]) >= 0){
                   hideChannel = true;
                 }
               }
@@ -175,7 +175,7 @@ var discordWidget = discordWidget || (function(){
             for (var i = 0; i < d.channels.length; i++) {
               hideChannel = false;
               for (var j = 0; j < p.hideChannels.length; j++) {
-                if (d.channels[i].name.includes(p.hideChannels[j])) {
+                if (d.channels[i].name.indexOf(p.hideChannels[j]) >= 0){
                   hideChannel = true;
                 }
               }
