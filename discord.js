@@ -12,6 +12,7 @@ var discordWidget = discordWidget || (function(){
       Params.hideChannels = typeof Params.hideChannels !== 'undefined' ? Params.hideChannels : false;
       Params.showAllUsers = typeof Params.showAllUsers !== 'undefined' ? Params.showAllUsers : false;
       Params.allUsersDefaultState = typeof Params.allUsersDefaultState !== 'undefined' ? Params.allUsersDefaultState : true;
+      Params.showNick = typeof Params.showNick !== 'undefined' ? Params.showNick : true;
       _params.serverId = Params.serverId;
       _params.title = Params.title;
       _params.join = Params.join;
@@ -20,6 +21,7 @@ var discordWidget = discordWidget || (function(){
       _params.hideChannels = Params.hideChannels;
       _params.showAllUsers = Params.showAllUsers;
       _params.allUsersDefaultState = Params.allUsersDefaultState;
+      _params.showNick = Params.showNick;
     },
     render : function() {
       if (window.jQuery) {
@@ -93,6 +95,12 @@ var discordWidget = discordWidget || (function(){
           return '<li class="discord-channel">' + name + '</li><ul class="discord-userlist">';
         }
         function renderUser(member, channelId) {
+          var userName = '';
+          if (_params.showNick == true && member.nick) {
+            userName = member.nick;
+          } else {
+            userName = member.username;
+          }
           var gameName = '';
           if (member.game)
           gameName = ' - ' + member.game.name;
@@ -100,11 +108,11 @@ var discordWidget = discordWidget || (function(){
             if (member.status != 'online') {
               return '<li class="discord-user"><img src="' + member.avatar_url +
               '" class="discord-avatar"/><div class="discord-user-status discord-idle"></div>' +
-              member.username + '<span>' + gameName + '</span></li>';
+              userName + '<span>' + gameName + '</span></li>';
             } else {
               return '<li class="discord-user"><img src="' + member.avatar_url +
               '" class="discord-avatar"/><div class="discord-user-status discord-online"></div>' +
-              member.username + '<span>' + gameName + '</span></li>';
+              userName + '<span>' + gameName + '</span></li>';
             }
           }
           else {

@@ -48,6 +48,9 @@ app.get('/render', function(req, res){
   if (req.query.showall){
     res.write('showAllUsers: ' + req.query.showall + ',');
   }
+  if (req.query.shownick){
+    res.write('showNick: ' + req.query.shownick + ',');
+  }
   if (req.query.toggle){
     res.write('allUsersDefaultState: ' + req.query.toggle + ',');
   }

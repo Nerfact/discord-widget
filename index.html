@@ -39,7 +39,7 @@
     <li><a href="#tab2">iframe</a></li>
   </ul>
   <div id="tab1">
-    <pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://discord.deliriousdrunkards.com/discord.min.js&quot;&gt;&lt;/script&gt;<br/>&lt;script type=&quot;text/javascript&quot;&gt;<br/>  discordWidget.init({<br/>    serverId: '51143782082543616',<br/>    title: 'Discord Widget Title',<br/>    join: false,<br/>    alphabetical: false,<br/>    theme: 'dark',<br/>    hideChannels: ['Channel Name 1', 'Channel Name 2'],<br/>    showAllUsers: true,<br/>    allUsersDefaultState: true<br/>  });<br/>  discordWidget.render();<br/>&lt;/script&gt;<br/><br/>&lt;div class=&quot;discord-widget&quot;&gt;&lt;/div&gt;</code></pre>
+    <pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;discord.js&quot;&gt;&lt;/script&gt;<br/>&lt;script type=&quot;text/javascript&quot;&gt;<br/>discordWidget.init({<br/>  serverId: '51143782082543616',<br/>  title: 'Discord Widget Title',<br/>  join: true,<br/>  alphabetical: false,<br/>  theme: 'light',<br/>  hideChannels: ['Channel Name 1', 'Channel Name 2'],<br/>  showAllUsers: true,<br/>  allUsersDefaultState: true,<br/>  showNick: false<br/>});<br/>discordWidget.render();<br/>&lt;/script&gt;<br/><br/>&lt;div class=&quot;discord-widget&quot;&gt;&lt;/div&gt;</code></pre>
   </div>
   <div id="tab2">
     <p class="iframe-form-info">
@@ -114,6 +114,13 @@
                     </span>
                     <br>
                </div>
+               <div>
+                    <input type="checkbox" name="iframe-options-shownick" id="iframe-options-shownick" value="Show Server Nicknames">
+                    <span>
+                         Show Server Nicknames
+                    </span>
+                    <br>
+               </div>
           </div>
           <div id="iframe-hidechannels">
                <label for="iframe-hidechannels-text">
@@ -138,6 +145,7 @@
     <tr><td>hideChannels<br/><strong>[String Array]</strong></td><td>Hide channels. If the channel name contains the string provided, it will be hidden.</td><td>false</td></tr>
     <tr><td>showAllUsers<br/><strong>[Boolean]</strong></td><td>Show all online users, even if they are not in a voice channel.</td><td>false</td></tr>
     <tr><td>allUsersDefaultState<br/><strong>[Boolean]</strong></td><td>Sets whether the Online Users section is expanded or not by default.</td><td>true</td></tr>
+    <tr><td>showNick<br/><strong>[Boolean]</strong></td><td>Sets whether the the users' server nick name shows or not.</td><td>false</td></tr>
   </table>
   <h2>Preview</h2>
   <div class="discord-preview">
@@ -151,7 +159,8 @@ discordWidget.init({
   theme: 'light',
   hideChannels: ['Channel Name 1', 'Channel Name 2'],
   showAllUsers: true,
-  allUsersDefaultState: true
+  allUsersDefaultState: true,
+  showNick: false
 });
 discordWidget.render();
 </script>

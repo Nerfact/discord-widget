@@ -15,6 +15,7 @@ themeNoneInput = document.getElementById('iframe-theme-none');
 optionsJoinInput = document.getElementById('iframe-options-join');
 optionsAbcInput = document.getElementById('iframe-options-abc');
 optionsShowAllInput = document.getElementById('iframe-options-showall');
+optionsShowNickInput = document.getElementById('iframe-options-shownick');
 optionsToggleInput = document.getElementById('iframe-options-showalltoggle');
 
 hideChannelsInput = document.getElementById('iframe-hidechannels-text');
@@ -60,6 +61,11 @@ setInterval(function() {
     iframeCodeResult += '&toggle=true';
   } else {
     iframeCodeResult += '&toggle=false';
+  }
+  if (optionsShowNickInput.checked) {
+    iframeCodeResult += '&shownick=true';
+  } else {
+    iframeCodeResult += '&shownick=false';
   }
 
 
